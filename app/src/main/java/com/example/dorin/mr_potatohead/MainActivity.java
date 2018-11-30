@@ -1,10 +1,18 @@
 package com.example.dorin.mr_potatohead;
 
+import android.content.Intent;
+import android.os.SystemClock;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.Gravity;
+import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.CheckBox;
 import android.widget.ImageView;
+import android.widget.PopupWindow;
+import android.widget.RelativeLayout;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -12,11 +20,16 @@ public class MainActivity extends AppCompatActivity {
     ImageView[] ImageViews = new ImageView[10];
     // list for all CheckBoxes
     CheckBox[] CheckBoxes = new CheckBox[10];
+    private LayoutInflater layoutInflater;
+    private PopupWindow popupWindow;
+    private RelativeLayout relativeLayout;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.test);
+        relativeLayout = findViewById(R.id.relative);
+
         // put all imageViews in list ImageViews
         ImageViews[0] = findViewById(R.id.hat);
         ImageViews[1] = findViewById(R.id.ears);
@@ -45,7 +58,6 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onSaveInstanceState(Bundle outState) {
         super.onSaveInstanceState(outState);
-
         // the variables are integers, they stand for if the image is visible or not
         outState.putInt("Hat", ImageViews[0].getVisibility());
         outState.putInt("Ears", ImageViews[1].getVisibility());
@@ -88,11 +100,38 @@ public class MainActivity extends AppCompatActivity {
                     if (checkBox.isChecked()) {
                         // set image visible
                         ImageViews[i].setVisibility(ImageView.VISIBLE);
+
+                        // show pop up
+                        layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                        ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.pop_up, null);
+                        popupWindow = new PopupWindow(container, 300, 70,true);
+                        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 300);
+                        container.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch (View view, MotionEvent motionEvent) {
+                                popupWindow.dismiss();
+                                return true;
+                            }
+                        });
                     }
+
                     // if checkbox is not checked
                     else {
                         // set image invisible
                         ImageViews[i].setVisibility(ImageView.INVISIBLE);
+                        // show pop up
+                        layoutInflater = (LayoutInflater) getApplicationContext().getSystemService(LAYOUT_INFLATER_SERVICE);
+                        ViewGroup container = (ViewGroup) layoutInflater.inflate(R.layout.pop_up, null);
+                        popupWindow = new PopupWindow(container, 300, 70,true);
+                        popupWindow.showAtLocation(relativeLayout, Gravity.CENTER_HORIZONTAL, 0, 300);
+                        container.setOnTouchListener(new View.OnTouchListener() {
+                            @Override
+                            public boolean onTouch (View view, MotionEvent motionEvent) {
+                                popupWindow.dismiss();
+                                return true;
+                            }
+                        });
+
                     }
                 }
             }
