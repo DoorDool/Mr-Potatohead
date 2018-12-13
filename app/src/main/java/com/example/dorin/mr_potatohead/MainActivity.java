@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.CheckBox;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -89,13 +88,11 @@ public class MainActivity extends AppCompatActivity {
                     if (checkBox.isChecked()) {
                         // set image visible
                         ImageViews[i].setVisibility(ImageView.VISIBLE);
-                        Toast.makeText(this, "Dressed", Toast.LENGTH_SHORT).show();
                     }
                     // if checkbox is not checked
                     else {
                         // set image invisible
                         ImageViews[i].setVisibility(ImageView.INVISIBLE);
-                        Toast.makeText(this, "Undressed", Toast.LENGTH_SHORT).show();
                     }
                 }
             }
