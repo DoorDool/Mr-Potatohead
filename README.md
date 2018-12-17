@@ -8,7 +8,7 @@ When you click on the checkboxes, the attribute will appear. When you unchecked 
 
 You can also rotate your mobile phone and the app will adapt.
 
-<img src="https://github.com/DoorDool/mr-potatohead/blob/master/app/src/main/res/drawable/layout_landscape.png" width="100">
+<img src="https://github.com/DoorDool/mr-potatohead/blob/master/app/src/main/res/drawable/layout_landscape.png" width="300">
 
 The pictogram of the app is like this:
 
